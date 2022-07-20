@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col-6">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahData">
+            <button type="button" class="btn btn-primary tampilModalTambah" data-bs-toggle="modal" data-bs-target="#modalForm">
                 Tambah Data Mahasiswa
             </button>
             <h3 class="mt-3">Daftar Mahasiswa</h3>
@@ -18,6 +18,7 @@
                         <?= $mhs["nama"]; ?>
                         <section>
                             <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs["id"]; ?>" class="badge text-bg-primary text-decoration-none">detail</a>
+                            <a href="<?= BASEURL; ?>/mahasiswa/ubah/<?= $mhs["id"]; ?>" data-id="<?= $mhs["id"]; ?>" class="badge text-bg-warning text-decoration-none tampilModalUbah" data-bs-toggle="modal" data-bs-target="#modalForm"><i class="bi bi-pencil-square"></i></a>
                             <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs["id"]; ?>" class="badge text-bg-danger text-decoration-none" onclick="return confirm('Yakin?')"><i class="bi bi-trash"></i></a>
                         </section>
                     </li>
@@ -29,7 +30,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
+<div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -39,6 +40,7 @@
             <div class="modal-body">
 
                 <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
+                    <input type="hidden" name="id" id="id">
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Elon Musk">
@@ -54,7 +56,7 @@
                     <div class="mb-3">
                         <label for="jurusan" class="form-label">Jurusan</label>
                         <select id="jurusan" name="jurusan" class="form-select" aria-label="Default select example">
-                            <option selected disabled>Pilih Jurusan</option>
+                            <option selected disabled value="">Pilih Jurusan</option>
                             <option value="Teknik Informatika">Teknik Informatika</option>
                             <option value="Sistem Informasi">Sistem Informasi</option>
                             <option value="Sains Data">Sains Data</option>
